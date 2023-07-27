@@ -6,9 +6,7 @@
     "dev": "vite",
     "build": "vite build && npm run build:types",
     "build:types": "vue-tsc --project tsconfig.build-types.json --declaration --emitDeclarationOnly --outDir dist/types ",
-    "typecheck": "vue-tsc --project tsconfig.build-types.json --noEmit",
-    "install": "npm run build",
-    "postinstall": "npm run build"
+    "typecheck": "vue-tsc --project tsconfig.build-types.json --noEmit"
   },
   "keywords": [],
   "author": "",
