@@ -1,36 +1,40 @@
-import { defineComponent as s, openBlock as r, createElementBlock as u, createElementVNode as n, renderSlot as p, createTextVNode as d, toDisplayString as i } from "vue";
-const _ = { class: "input-container" }, c = ["for"], m = ["id", "name", "value"], f = /* @__PURE__ */ s({
+import { defineComponent as s, openBlock as p, createElementBlock as r, createElementVNode as l, renderSlot as u, createTextVNode as i, toDisplayString as d } from "vue";
+const c = { class: "input-container" }, _ = ["for"], m = ["id", "name", "value"], b = /* @__PURE__ */ s({
   __name: "BetterInput",
   props: {
     label: {},
     modelValue: {}
   },
   emits: ["update:modelValue"],
-  setup(l) {
-    return (e, t) => (r(), u("div", _, [
-      n("label", {
+  setup(t) {
+    return (e, o) => (p(), r("div", c, [
+      l("label", {
         class: "input-label",
         for: e.label
       }, [
-        p(e.$slots, "default", {}, void 0, !0),
-        d(" " + i(e.label), 1)
-      ], 8, c),
-      n("input", {
+        u(e.$slots, "default", {}, void 0, !0),
+        i(" " + d(e.label), 1)
+      ], 8, _),
+      l("input", {
         id: e.label,
         class: "input",
         name: e.label,
         value: e.modelValue,
-        onInput: t[0] || (t[0] = (o) => e.$emit("update:modelValue", o.target.value))
+        onInput: o[0] || (o[0] = (n) => e.$emit("update:modelValue", n.target.value))
       }, null, 40, m)
     ]));
   }
 });
-const v = (l, e) => {
-  const t = l.__vccOpts || l;
-  for (const [o, a] of e)
-    t[o] = a;
-  return t;
-}, V = /* @__PURE__ */ v(f, [["__scopeId", "data-v-52b8f1ca"]]);
+const f = (t, e) => {
+  const o = t.__vccOpts || t;
+  for (const [n, a] of e)
+    o[n] = a;
+  return o;
+}, v = /* @__PURE__ */ f(b, [["__scopeId", "data-v-52b8f1ca"]]), g = {
+  install(t, ...e) {
+    t.component("better-input", v);
+  }
+};
 export {
-  V as BetterInput
+  g as componentsPlugin
 };

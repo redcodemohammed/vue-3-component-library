@@ -1,1 +1,3 @@
-export { default as BetterInput } from './components/BetterInput.vue';
+import { Plugin } from 'vue';
+export * from './composables/useCounter';
+export declare const componentsPlugin: Plugin;
