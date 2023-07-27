@@ -5,11 +5,12 @@ export const routes: RouteRecordRaw[] = [
   { path: '/about', component: () => import('../views/About.vue'), name: 'about' }
 ]
 
-export const useRouter = (basePath: string = '') =>
+export const useRouter = (basePath: string = '', app: string) =>
   createRouter({
     history: createWebHistory(),
-    routes: routes.map((r) => {
-      r.path = basePath + r.path
-      return r
+    routes: routes.map((route) => {
+      route.path = basePath + route.path
+      route.name = `${app}-${route.name?.toString()}`
+      return route
     })
   })
