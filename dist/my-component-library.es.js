@@ -1,20 +1,20 @@
-import { shallowRef as bt, unref as Y, shallowReactive as wt, nextTick as Rt, defineComponent as we, reactive as Pt, inject as Z, computed as V, h as Fe, provide as fe, ref as Ye, watch as Je, getCurrentInstance as Xe, watchEffect as St, openBlock as Nt, createElementBlock as Ot, createElementVNode as Ae, renderSlot as kt, createTextVNode as Ct, toDisplayString as $t } from "vue";
-function At() {
+import { shallowRef as wt, unref as Y, shallowReactive as Rt, nextTick as Pt, defineComponent as we, reactive as St, inject as Z, computed as V, h as Fe, provide as fe, ref as Ye, watch as Je, getCurrentInstance as Xe, watchEffect as Nt, openBlock as Ot, createElementBlock as kt, createElementVNode as Ae, renderSlot as Ct, createTextVNode as $t, toDisplayString as At } from "vue";
+function xt() {
   return Ze().__VUE_DEVTOOLS_GLOBAL_HOOK__;
 }
 function Ze() {
   return typeof navigator < "u" && typeof window < "u" ? window : typeof global < "u" ? global : {};
 }
-const xt = typeof Proxy == "function", It = "devtools-plugin:setup", Vt = "plugin:settings:set";
+const It = typeof Proxy == "function", Vt = "devtools-plugin:setup", Tt = "plugin:settings:set";
 let K, me;
-function Tt() {
+function Dt() {
   var e;
   return K !== void 0 || (typeof window < "u" && window.performance ? (K = !0, me = window.performance) : typeof global < "u" && (!((e = global.perf_hooks) === null || e === void 0) && e.performance) ? (K = !0, me = global.perf_hooks.performance) : K = !1), K;
 }
-function Dt() {
-  return Tt() ? me.now() : Date.now();
+function jt() {
+  return Dt() ? me.now() : Date.now();
 }
-class jt {
+class Mt {
   constructor(t, n) {
     this.target = null, this.targetQueue = [], this.onQueue = [], this.plugin = t, this.hook = n;
     const o = {};
@@ -42,9 +42,9 @@ class jt {
         l = f;
       },
       now() {
-        return Dt();
+        return jt();
       }
-    }, n && n.on(Vt, (f, d) => {
+    }, n && n.on(Tt, (f, d) => {
       f === this.plugin.id && this.fallbacks.setSettings(d);
     }), this.proxiedOn = new Proxy({}, {
       get: (f, d) => this.target ? this.target.on[d] : (...c) => {
@@ -76,12 +76,12 @@ class jt {
       n.resolve(await this.target[n.method](...n.args));
   }
 }
-function Mt(e, t) {
-  const n = e, o = Ze(), r = At(), l = xt && n.enableEarlyProxy;
+function Lt(e, t) {
+  const n = e, o = Ze(), r = xt(), l = It && n.enableEarlyProxy;
   if (r && (o.__VUE_DEVTOOLS_PLUGIN_API_AVAILABLE__ || !l))
-    r.emit(It, e, t);
+    r.emit(Vt, e, t);
   else {
-    const f = l ? new jt(n, r) : null;
+    const f = l ? new Mt(n, r) : null;
     (o.__VUE_DEVTOOLS_PLUGINS__ = o.__VUE_DEVTOOLS_PLUGINS__ || []).push({
       pluginDescriptor: n,
       setupFn: t,
@@ -95,7 +95,7 @@ function Mt(e, t) {
   * @license MIT
   */
 const j = typeof window < "u";
-function Lt(e) {
+function Ut(e) {
   return e.__esModule || e[Symbol.toStringTag] === "Module";
 }
 const S = Object.assign;
@@ -113,19 +113,19 @@ function R(e) {
   const t = Array.from(arguments).slice(1);
   console.warn.apply(console, ["[Vue Router warn]: " + e].concat(t));
 }
-const Ut = /\/$/, Bt = (e) => e.replace(Ut, "");
+const Bt = /\/$/, Gt = (e) => e.replace(Bt, "");
 function he(e, t, n = "/") {
   let o, r = {}, l = "", f = "";
   const d = t.indexOf("#");
   let c = t.indexOf("?");
-  return d < c && d >= 0 && (c = -1), c > -1 && (o = t.slice(0, c), l = t.slice(c + 1, d > -1 ? d : t.length), r = e(l)), d > -1 && (o = o || t.slice(0, d), f = t.slice(d, t.length)), o = Kt(o ?? t, n), {
+  return d < c && d >= 0 && (c = -1), c > -1 && (o = t.slice(0, c), l = t.slice(c + 1, d > -1 ? d : t.length), r = e(l)), d > -1 && (o = o || t.slice(0, d), f = t.slice(d, t.length)), o = Wt(o ?? t, n), {
     fullPath: o + (l && "?") + l + f,
     path: o,
     query: r,
     hash: f
   };
 }
-function Gt(e, t) {
+function Ht(e, t) {
   const n = t.query ? e(t.query) : "";
   return t.path + (n && "?") + n + (t.hash || "");
 }
@@ -143,17 +143,17 @@ function et(e, t) {
   if (Object.keys(e).length !== Object.keys(t).length)
     return !1;
   for (const n in e)
-    if (!Ht(e[n], t[n]))
+    if (!Kt(e[n], t[n]))
       return !1;
   return !0;
 }
-function Ht(e, t) {
+function Kt(e, t) {
   return I(e) ? Ve(e, t) : I(t) ? Ve(t, e) : e === t;
 }
 function Ve(e, t) {
   return I(t) ? e.length === t.length && e.every((n, o) => n === t[o]) : e.length === 1 && e[0] === t;
 }
-function Kt(e, t) {
+function Wt(e, t) {
   if (e.startsWith("/"))
     return e;
   if (process.env.NODE_ENV !== "production" && !t.startsWith("/"))
@@ -179,20 +179,20 @@ var X;
 (function(e) {
   e.back = "back", e.forward = "forward", e.unknown = "";
 })(X || (X = {}));
-function Wt(e) {
+function qt(e) {
   if (!e)
     if (j) {
       const t = document.querySelector("base");
       e = t && t.getAttribute("href") || "/", e = e.replace(/^\w+:\/\/[^\/]+/, "");
     } else
       e = "/";
-  return e[0] !== "/" && e[0] !== "#" && (e = "/" + e), Bt(e);
+  return e[0] !== "/" && e[0] !== "#" && (e = "/" + e), Gt(e);
 }
-const qt = /^[^#]+#/;
-function zt(e, t) {
-  return e.replace(qt, "#") + t;
-}
+const zt = /^[^#]+#/;
 function Qt(e, t) {
+  return e.replace(zt, "#") + t;
+}
+function Ft(e, t) {
   const n = document.documentElement.getBoundingClientRect(), o = e.getBoundingClientRect();
   return {
     behavior: t.behavior,
@@ -204,7 +204,7 @@ const se = () => ({
   left: window.pageXOffset,
   top: window.pageYOffset
 });
-function Ft(e) {
+function Yt(e) {
   let t;
   if ("el" in e) {
     const n = e.el, o = typeof n == "string" && n.startsWith("#");
@@ -224,7 +224,7 @@ function Ft(e) {
       process.env.NODE_ENV !== "production" && R(`Couldn't find element using selector "${e.el}" returned by scrollBehavior.`);
       return;
     }
-    t = Qt(r, e);
+    t = Ft(r, e);
   } else
     t = e;
   "scrollBehavior" in document.documentElement.style ? window.scrollTo(t) : window.scrollTo(t.left != null ? t.left : window.pageXOffset, t.top != null ? t.top : window.pageYOffset);
@@ -233,14 +233,14 @@ function Te(e, t) {
   return (history.state ? history.state.position - t : -1) + e;
 }
 const ge = /* @__PURE__ */ new Map();
-function Yt(e, t) {
+function Jt(e, t) {
   ge.set(e, t);
 }
-function Jt(e) {
+function Xt(e) {
   const t = ge.get(e);
   return ge.delete(e), t;
 }
-let Xt = () => location.protocol + "//" + location.host;
+let Zt = () => location.protocol + "//" + location.host;
 function tt(e, t) {
   const { pathname: n, search: o, hash: r } = t, l = e.indexOf("#");
   if (l > -1) {
@@ -249,7 +249,7 @@ function tt(e, t) {
   }
   return xe(n, e) + o + r;
 }
-function Zt(e, t, n, o) {
+function en(e, t, n, o) {
   let r = [], l = [], f = null;
   const d = ({ state: u }) => {
     const m = tt(e, location), y = n.value, C = t.value;
@@ -308,7 +308,7 @@ function De(e, t, n, o = !1, r = !1) {
     scroll: r ? se() : null
   };
 }
-function en(e) {
+function tn(e) {
   const { history: t, location: n } = window, o = {
     value: tt(e, n)
   }, r = { value: t.state };
@@ -324,7 +324,7 @@ function en(e) {
     scroll: null
   }, !0);
   function l(c, h, s) {
-    const a = e.indexOf("#"), u = a > -1 ? (n.host && document.querySelector("base") ? e : e.slice(a)) + c : Xt() + e + c;
+    const a = e.indexOf("#"), u = a > -1 ? (n.host && document.querySelector("base") ? e : e.slice(a)) + c : Zt() + e + c;
     try {
       t[s ? "replaceState" : "pushState"](h, "", u), r.value = h;
     } catch (m) {
@@ -369,9 +369,9 @@ You can find more information at https://next.router.vuejs.org/guide/migration/#
     replace: f
   };
 }
-function tn(e) {
-  e = Wt(e);
-  const t = en(e), n = Zt(e, t.state, t.location, t.replace);
+function nn(e) {
+  e = qt(e);
+  const t = tn(e), n = en(e, t.state, t.location, t.replace);
   function o(l, f = !0) {
     f || n.pauseListeners(), history.go(l);
   }
@@ -380,7 +380,7 @@ function tn(e) {
     location: "",
     base: e,
     go: o,
-    createHref: zt.bind(null, e)
+    createHref: Qt.bind(null, e)
   }, t, n);
   return Object.defineProperty(r, "location", {
     enumerable: !0,
@@ -390,7 +390,7 @@ function tn(e) {
     get: () => t.state.value
   }), r;
 }
-function nn(e) {
+function on(e) {
   return typeof e == "string" || e && typeof e == "object";
 }
 function nt(e) {
@@ -411,7 +411,7 @@ var je;
 (function(e) {
   e[e.aborted = 4] = "aborted", e[e.cancelled = 8] = "cancelled", e[e.duplicated = 16] = "duplicated";
 })(je || (je = {}));
-const on = {
+const rn = {
   1({ location: e, currentLocation: t }) {
     return `No match for
  ${JSON.stringify(e)}${t ? `
@@ -419,7 +419,7 @@ while being at
 ` + JSON.stringify(t) : ""}`;
   },
   2({ from: e, to: t }) {
-    return `Redirected from "${e.fullPath}" to "${sn(t)}" via a navigation guard.`;
+    return `Redirected from "${e.fullPath}" to "${an(t)}" via a navigation guard.`;
   },
   4({ from: e, to: t }) {
     return `Navigation aborted from "${e.fullPath}" to "${t.fullPath}" via a navigation guard.`;
@@ -432,7 +432,7 @@ while being at
   }
 };
 function W(e, t) {
-  return process.env.NODE_ENV !== "production" ? S(new Error(on[e](t)), {
+  return process.env.NODE_ENV !== "production" ? S(new Error(rn[e](t)), {
     type: e,
     [ve]: !0
   }, t) : S(new Error(), {
@@ -443,25 +443,25 @@ function W(e, t) {
 function D(e, t) {
   return e instanceof Error && ve in e && (t == null || !!(e.type & t));
 }
-const rn = ["params", "query", "hash"];
-function sn(e) {
+const sn = ["params", "query", "hash"];
+function an(e) {
   if (typeof e == "string")
     return e;
   if ("path" in e)
     return e.path;
   const t = {};
-  for (const n of rn)
+  for (const n of sn)
     n in e && (t[n] = e[n]);
   return JSON.stringify(t, null, 2);
 }
-const Me = "[^/]+?", an = {
+const Me = "[^/]+?", cn = {
   sensitive: !1,
   strict: !1,
   start: !0,
   end: !0
-}, cn = /[.+*?^${}()[\]/\\]/g;
-function ln(e, t) {
-  const n = S({}, an, t), o = [];
+}, ln = /[.+*?^${}()[\]/\\]/g;
+function un(e, t) {
+  const n = S({}, cn, t), o = [];
   let r = n.start ? "^" : "";
   const l = [];
   for (const h of e) {
@@ -474,7 +474,7 @@ function ln(e, t) {
       const u = h[a];
       let m = 40 + (n.sensitive ? 0.25 : 0);
       if (u.type === 0)
-        a || (r += "/"), r += u.value.replace(cn, "\\$&"), m += 40;
+        a || (r += "/"), r += u.value.replace(ln, "\\$&"), m += 40;
       else if (u.type === 1) {
         const { value: y, repeatable: C, optional: N, regexp: E } = u;
         l.push({
@@ -546,7 +546,7 @@ function ln(e, t) {
     stringify: c
   };
 }
-function un(e, t) {
+function fn(e, t) {
   let n = 0;
   for (; n < e.length && n < t.length; ) {
     const o = t[n] - e[n];
@@ -556,11 +556,11 @@ function un(e, t) {
   }
   return e.length < t.length ? e.length === 1 && e[0] === 40 + 40 ? -1 : 1 : e.length > t.length ? t.length === 1 && t[0] === 40 + 40 ? 1 : -1 : 0;
 }
-function fn(e, t) {
+function dn(e, t) {
   let n = 0;
   const o = e.score, r = t.score;
   for (; n < o.length && n < r.length; ) {
-    const l = un(o[n], r[n]);
+    const l = fn(o[n], r[n]);
     if (l)
       return l;
     n++;
@@ -577,15 +577,15 @@ function Le(e) {
   const t = e[e.length - 1];
   return e.length > 0 && t[t.length - 1] < 0;
 }
-const dn = {
+const hn = {
   type: 0,
   value: ""
-}, hn = /[a-zA-Z0-9_]/;
-function pn(e) {
+}, pn = /[a-zA-Z0-9_]/;
+function mn(e) {
   if (!e)
     return [[]];
   if (e === "/")
-    return [[dn]];
+    return [[hn]];
   if (!e.startsWith("/"))
     throw new Error(process.env.NODE_ENV !== "production" ? `Route paths should start with a "/": "${e}" should be "/${e}".` : `Invalid path "${e}"`);
   function t(m) {
@@ -626,7 +626,7 @@ function pn(e) {
         u(), n = o;
         break;
       case 1:
-        c === "(" ? n = 2 : hn.test(c) ? u() : (a(), n = 0, c !== "*" && c !== "?" && c !== "+" && d--);
+        c === "(" ? n = 2 : pn.test(c) ? u() : (a(), n = 0, c !== "*" && c !== "?" && c !== "+" && d--);
         break;
       case 2:
         c === ")" ? s[s.length - 1] == "\\" ? s = s.slice(0, -1) + c : n = 3 : s += c;
@@ -641,8 +641,8 @@ function pn(e) {
   }
   return n === 2 && t(`Unfinished custom RegExp for param "${h}"`), a(), f(), r;
 }
-function mn(e, t, n) {
-  const o = ln(pn(e.path), n);
+function gn(e, t, n) {
+  const o = un(mn(e.path), n);
   if (process.env.NODE_ENV !== "production") {
     const l = /* @__PURE__ */ new Set();
     for (const f of o.keys)
@@ -657,15 +657,15 @@ function mn(e, t, n) {
   });
   return t && !r.record.aliasOf == !t.record.aliasOf && t.children.push(r), r;
 }
-function gn(e, t) {
+function vn(e, t) {
   const n = [], o = /* @__PURE__ */ new Map();
   t = Ge({ strict: !1, end: !0, sensitive: !1 }, t);
   function r(s) {
     return o.get(s);
   }
   function l(s, a, u) {
-    const m = !u, y = vn(s);
-    process.env.NODE_ENV !== "production" && bn(y, a), y.aliasOf = u && u.record;
+    const m = !u, y = yn(s);
+    process.env.NODE_ENV !== "production" && wn(y, a), y.aliasOf = u && u.record;
     const C = Ge(t, s), N = [
       y
     ];
@@ -693,7 +693,7 @@ function gn(e, t) {
       if (process.env.NODE_ENV !== "production" && k.path === "*")
         throw new Error(`Catch all routes ("*") must now be defined using a param with a custom regexp.
 See more at https://next.router.vuejs.org/guide/migration/#removed-star-or-catch-all-routes.`);
-      if (E = mn(k, a, C), process.env.NODE_ENV !== "production" && a && x[0] === "/" && wn(E, a), u ? (u.alias.push(E), process.env.NODE_ENV !== "production" && _n(u, E)) : (b = b || E, b !== E && b.alias.push(E), m && s.name && !Be(E) && f(s.name)), y.children) {
+      if (E = gn(k, a, C), process.env.NODE_ENV !== "production" && a && x[0] === "/" && Rn(E, a), u ? (u.alias.push(E), process.env.NODE_ENV !== "production" && bn(u, E)) : (b = b || E, b !== E && b.alias.push(E), m && s.name && !Be(E) && f(s.name)), y.children) {
         const B = y.children;
         for (let T = 0; T < B.length; T++)
           l(B[T], E, u && u.children[T]);
@@ -718,7 +718,7 @@ See more at https://next.router.vuejs.org/guide/migration/#removed-star-or-catch
   }
   function c(s) {
     let a = 0;
-    for (; a < n.length && fn(s, n[a]) >= 0 && // Adding children with empty path should still appear before the parent
+    for (; a < n.length && dn(s, n[a]) >= 0 && // Adding children with empty path should still appear before the parent
     // https://github.com/vuejs/router/issues/1124
     (s.record.path !== n[a].record.path || !ot(s, n[a])); )
       a++;
@@ -766,7 +766,7 @@ See more at https://next.router.vuejs.org/guide/migration/#removed-star-or-catch
       path: y,
       params: m,
       matched: N,
-      meta: En(N)
+      meta: _n(N)
     };
   }
   return e.forEach((s) => l(s)), { addRoute: l, resolve: h, removeRoute: f, getRoutes: d, getRecordMatcher: r };
@@ -777,7 +777,7 @@ function Ue(e, t) {
     o in e && (n[o] = e[o]);
   return n;
 }
-function vn(e) {
+function yn(e) {
   return {
     path: e.path,
     redirect: e.redirect,
@@ -785,7 +785,7 @@ function vn(e) {
     meta: e.meta || {},
     aliasOf: void 0,
     beforeEnter: e.beforeEnter,
-    props: yn(e),
+    props: En(e),
     children: e.children || [],
     instances: {},
     leaveGuards: /* @__PURE__ */ new Set(),
@@ -794,7 +794,7 @@ function vn(e) {
     components: "components" in e ? e.components || null : e.component && { default: e.component }
   };
 }
-function yn(e) {
+function En(e) {
   const t = {}, n = e.props || !1;
   if ("component" in e)
     t.default = n;
@@ -811,7 +811,7 @@ function Be(e) {
   }
   return !1;
 }
-function En(e) {
+function _n(e) {
   return e.reduce((t, n) => S(t, n.meta), {});
 }
 function Ge(e, t) {
@@ -823,7 +823,7 @@ function Ge(e, t) {
 function ye(e, t) {
   return e.name === t.name && e.optional === t.optional && e.repeatable === t.repeatable;
 }
-function _n(e, t) {
+function bn(e, t) {
   for (const n of e.keys)
     if (!n.optional && !t.keys.find(ye.bind(null, n)))
       return R(`Alias "${t.record.path}" and the original record: "${e.record.path}" must have the exact same param named "${n.name}"`);
@@ -831,10 +831,10 @@ function _n(e, t) {
     if (!n.optional && !e.keys.find(ye.bind(null, n)))
       return R(`Alias "${t.record.path}" and the original record: "${e.record.path}" must have the exact same param named "${n.name}"`);
 }
-function bn(e, t) {
+function wn(e, t) {
   t && t.record.name && !e.name && !e.path && R(`The route named "${String(t.record.name)}" has a child without a name and an empty path. Using that name won't render the empty path child so you probably want to move the name to the child instead. If this is intentional, add a name to the child route to remove the warning.`);
 }
-function wn(e, t) {
+function Rn(e, t) {
   for (const n of t.keys)
     if (!e.keys.find(ye.bind(null, n)))
       return R(`Absolute path "${e.record.path}" must have the exact same param named "${n.name}" as its parent "${t.record.path}".`);
@@ -842,24 +842,24 @@ function wn(e, t) {
 function ot(e, t) {
   return t.children.some((n) => n === e || ot(e, n));
 }
-const rt = /#/g, Rn = /&/g, Pn = /\//g, Sn = /=/g, Nn = /\?/g, st = /\+/g, On = /%5B/g, kn = /%5D/g, it = /%5E/g, Cn = /%60/g, at = /%7B/g, $n = /%7C/g, ct = /%7D/g, An = /%20/g;
+const rt = /#/g, Pn = /&/g, Sn = /\//g, Nn = /=/g, On = /\?/g, st = /\+/g, kn = /%5B/g, Cn = /%5D/g, it = /%5E/g, $n = /%60/g, at = /%7B/g, An = /%7C/g, ct = /%7D/g, xn = /%20/g;
 function Re(e) {
-  return encodeURI("" + e).replace($n, "|").replace(On, "[").replace(kn, "]");
+  return encodeURI("" + e).replace(An, "|").replace(kn, "[").replace(Cn, "]");
 }
-function xn(e) {
+function In(e) {
   return Re(e).replace(at, "{").replace(ct, "}").replace(it, "^");
 }
 function Ee(e) {
-  return Re(e).replace(st, "%2B").replace(An, "+").replace(rt, "%23").replace(Rn, "%26").replace(Cn, "`").replace(at, "{").replace(ct, "}").replace(it, "^");
-}
-function In(e) {
-  return Ee(e).replace(Sn, "%3D");
+  return Re(e).replace(st, "%2B").replace(xn, "+").replace(rt, "%23").replace(Pn, "%26").replace($n, "`").replace(at, "{").replace(ct, "}").replace(it, "^");
 }
 function Vn(e) {
-  return Re(e).replace(rt, "%23").replace(Nn, "%3F");
+  return Ee(e).replace(Nn, "%3D");
 }
 function Tn(e) {
-  return e == null ? "" : Vn(e).replace(Pn, "%2F");
+  return Re(e).replace(rt, "%23").replace(On, "%3F");
+}
+function Dn(e) {
+  return e == null ? "" : Tn(e).replace(Sn, "%2F");
 }
 function te(e) {
   try {
@@ -869,7 +869,7 @@ function te(e) {
   }
   return "" + e;
 }
-function Dn(e) {
+function jn(e) {
   const t = {};
   if (e === "" || e === "?")
     return t;
@@ -888,7 +888,7 @@ function He(e) {
   let t = "";
   for (let n in e) {
     const o = e[n];
-    if (n = In(n), o == null) {
+    if (n = Vn(n), o == null) {
       o !== void 0 && (t += (t.length ? "&" : "") + n);
       continue;
     }
@@ -898,7 +898,7 @@ function He(e) {
   }
   return t;
 }
-function jn(e) {
+function Mn(e) {
   const t = {};
   for (const n in e) {
     const o = e[n];
@@ -906,7 +906,7 @@ function jn(e) {
   }
   return t;
 }
-const Mn = Symbol(process.env.NODE_ENV !== "production" ? "router view location matched" : ""), Ke = Symbol(process.env.NODE_ENV !== "production" ? "router view depth" : ""), Pe = Symbol(process.env.NODE_ENV !== "production" ? "router" : ""), lt = Symbol(process.env.NODE_ENV !== "production" ? "route location" : ""), _e = Symbol(process.env.NODE_ENV !== "production" ? "router view location" : "");
+const Ln = Symbol(process.env.NODE_ENV !== "production" ? "router view location matched" : ""), Ke = Symbol(process.env.NODE_ENV !== "production" ? "router view depth" : ""), Pe = Symbol(process.env.NODE_ENV !== "production" ? "router" : ""), lt = Symbol(process.env.NODE_ENV !== "production" ? "route location" : ""), _e = Symbol(process.env.NODE_ENV !== "production" ? "router view location" : "");
 function Q() {
   let e = [];
   function t(o) {
@@ -932,12 +932,12 @@ function L(e, t, n, o, r) {
       a === !1 ? d(W(4, {
         from: n,
         to: t
-      })) : a instanceof Error ? d(a) : nn(a) ? d(W(2, {
+      })) : a instanceof Error ? d(a) : on(a) ? d(W(2, {
         from: t,
         to: a
       })) : (l && // since enterCallbackArray is truthy, both record and name also are
       o.enterCallbacks[r] === l && typeof a == "function" && l.push(a), f());
-    }, h = e.call(o && o.instances[r], t, n, process.env.NODE_ENV !== "production" ? Ln(c, t, n) : c);
+    }, h = e.call(o && o.instances[r], t, n, process.env.NODE_ENV !== "production" ? Un(c, t, n) : c);
     let s = Promise.resolve(h);
     if (e.length < 3 && (s = s.then(c)), process.env.NODE_ENV !== "production" && e.length > 2) {
       const a = `The "next" callback was never called inside of ${e.name ? '"' + e.name + '"' : ""}:
@@ -953,7 +953,7 @@ ${e.toString()}
     s.catch((a) => d(a));
   });
 }
-function Ln(e, t, n) {
+function Un(e, t, n) {
   let o = 0;
   return function() {
     o++ === 1 && R(`The "next" callback was called more than once in one navigation guard when going from "${n.fullPath}" to "${t.fullPath}". It should be called exactly one time in each navigation guard. This will fail in production.`), e._called = !0, o === 1 && e.apply(null, arguments);
@@ -977,7 +977,7 @@ function pe(e, t, n, o) {
           !d.__warnedDefineAsync && (d.__warnedDefineAsync = !0, R(`Component "${f}" in record with path "${l.path}" is defined using "defineAsyncComponent()". Write "() => import('./MyPage.vue')" instead of "defineAsyncComponent(() => import('./MyPage.vue'))".`));
       }
       if (!(t !== "beforeRouteEnter" && !l.instances[f]))
-        if (Un(d)) {
+        if (Bn(d)) {
           const h = (d.__vccOpts || d)[t];
           h && r.push(L(h, n, o, l, f));
         } else {
@@ -985,7 +985,7 @@ function pe(e, t, n, o) {
           process.env.NODE_ENV !== "production" && !("catch" in c) && (R(`Component "${f}" in record with path "${l.path}" is a function that does not return a Promise. If you were passing a functional component, make sure to add a "displayName" to the component. This will break in production if not fixed.`), c = Promise.resolve(c)), r.push(() => c.then((h) => {
             if (!h)
               return Promise.reject(new Error(`Couldn't resolve component "${f}" at "${l.path}"`));
-            const s = Lt(h) ? h.default : h;
+            const s = Ut(h) ? h.default : h;
             l.components[f] = s;
             const u = (s.__vccOpts || s)[t];
             return u && L(u, n, o, l, f)();
@@ -995,7 +995,7 @@ function pe(e, t, n, o) {
   }
   return r;
 }
-function Un(e) {
+function Bn(e) {
   return typeof e == "object" || "displayName" in e || "props" in e || "__vccOpts" in e;
 }
 function We(e) {
@@ -1015,9 +1015,9 @@ function We(e) {
       qe(s) === m && // avoid comparing the child with its parent
       a[a.length - 1].path !== m ? a.findIndex(U.bind(null, c[h - 2])) : u
     );
-  }), l = V(() => r.value > -1 && Kn(n.params, o.value.params)), f = V(() => r.value > -1 && r.value === n.matched.length - 1 && et(n.params, o.value.params));
+  }), l = V(() => r.value > -1 && Wn(n.params, o.value.params)), f = V(() => r.value > -1 && r.value === n.matched.length - 1 && et(n.params, o.value.params));
   function d(c = {}) {
-    return Hn(c) ? t[Y(e.replace) ? "replace" : "push"](
+    return Kn(c) ? t[Y(e.replace) ? "replace" : "push"](
       Y(e.to)
       // avoid uncaught errors are they are logged anyway
     ).catch(J) : Promise.resolve();
@@ -1030,7 +1030,7 @@ function We(e) {
         isActive: l.value,
         isExactActive: f.value
       };
-      c.__vrl_devtools = c.__vrl_devtools || [], c.__vrl_devtools.push(h), St(() => {
+      c.__vrl_devtools = c.__vrl_devtools || [], c.__vrl_devtools.push(h), Nt(() => {
         h.route = o.value, h.isActive = l.value, h.isExactActive = f.value;
       }, { flush: "post" });
     }
@@ -1043,7 +1043,7 @@ function We(e) {
     navigate: d
   };
 }
-const Bn = /* @__PURE__ */ we({
+const Gn = /* @__PURE__ */ we({
   name: "RouterLink",
   compatConfig: { MODE: 3 },
   props: {
@@ -1063,7 +1063,7 @@ const Bn = /* @__PURE__ */ we({
   },
   useLink: We,
   setup(e, { slots: t }) {
-    const n = Pt(We(e)), { options: o } = Z(Pe), r = V(() => ({
+    const n = St(We(e)), { options: o } = Z(Pe), r = V(() => ({
       [ze(e.activeClass, o.linkActiveClass, "router-link-active")]: n.isActive,
       // [getLinkClass(
       //   props.inactiveClass,
@@ -1084,8 +1084,8 @@ const Bn = /* @__PURE__ */ we({
       }, l);
     };
   }
-}), Gn = Bn;
-function Hn(e) {
+}), Hn = Gn;
+function Kn(e) {
   if (!(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey) && !e.defaultPrevented && !(e.button !== void 0 && e.button !== 0)) {
     if (e.currentTarget && e.currentTarget.getAttribute) {
       const t = e.currentTarget.getAttribute("target");
@@ -1095,7 +1095,7 @@ function Hn(e) {
     return e.preventDefault && e.preventDefault(), !0;
   }
 }
-function Kn(e, t) {
+function Wn(e, t) {
   for (const n in t) {
     const o = t[n], r = e[n];
     if (typeof o == "string") {
@@ -1109,7 +1109,7 @@ function Kn(e, t) {
 function qe(e) {
   return e ? e.aliasOf ? e.aliasOf.path : e.path : "";
 }
-const ze = (e, t, n) => e ?? t ?? n, Wn = /* @__PURE__ */ we({
+const ze = (e, t, n) => e ?? t ?? n, qn = /* @__PURE__ */ we({
   name: "RouterView",
   // #674 we manually inherit them
   inheritAttrs: !1,
@@ -1124,7 +1124,7 @@ const ze = (e, t, n) => e ?? t ?? n, Wn = /* @__PURE__ */ we({
   // https://github.com/vuejs/router/issues/1315
   compatConfig: { MODE: 3 },
   setup(e, { attrs: t, slots: n }) {
-    process.env.NODE_ENV !== "production" && zn();
+    process.env.NODE_ENV !== "production" && Qn();
     const o = Z(_e), r = V(() => e.route || o.value), l = Z(Ke, 0), f = V(() => {
       let h = Y(l);
       const { matched: s } = r.value;
@@ -1133,7 +1133,7 @@ const ze = (e, t, n) => e ?? t ?? n, Wn = /* @__PURE__ */ we({
         h++;
       return h;
     }), d = V(() => r.value.matched[f.value]);
-    fe(Ke, V(() => f.value + 1)), fe(Mn, d), fe(_e, r);
+    fe(Ke, V(() => f.value + 1)), fe(Ln, d), fe(_e, r);
     const c = Ye();
     return Je(() => [c.value, d.value, e.name], ([h, s, a], [u, m, y]) => {
       s && (s.instances[a] = h, m && m !== s && h && h === u && (s.leaveGuards.size || (s.leaveGuards = m.leaveGuards), s.updateGuards.size || (s.updateGuards = m.updateGuards))), h && s && // if there is no instance but to and from are the same this might be
@@ -1174,8 +1174,8 @@ function Qe(e, t) {
   const n = e(t);
   return n.length === 1 ? n[0] : n;
 }
-const qn = Wn;
-function zn() {
+const zn = qn;
+function Qn() {
   const e = Xe(), t = e.parent && e.parent.type.name, n = e.parent && e.parent.subTree && e.parent.subTree.type;
   if (t && (t === "KeepAlive" || t.includes("Transition")) && typeof n == "object" && n.name === "RouterView") {
     const o = t === "KeepAlive" ? "keep-alive" : "transition";
@@ -1192,7 +1192,7 @@ Use slot props instead:
 function F(e, t) {
   const n = S({}, e, {
     // remove variables that can contain vue instances
-    matched: e.matched.map((o) => no(o, ["instances", "children", "aliasOf"]))
+    matched: e.matched.map((o) => oo(o, ["instances", "children", "aliasOf"]))
   });
   return {
     _custom: {
@@ -1211,13 +1211,13 @@ function re(e) {
     }
   };
 }
-let Qn = 0;
-function Fn(e, t, n) {
+let Fn = 0;
+function Yn(e, t, n) {
   if (t.__hasDevtools)
     return;
   t.__hasDevtools = !0;
-  const o = Qn++;
-  Mt({
+  const o = Fn++;
+  Lt({
     id: "org.vuejs.router" + (o ? "." + o : ""),
     label: "Vue Router",
     packageName: "vue-router",
@@ -1340,16 +1340,16 @@ function Fn(e, t, n) {
       if (s.app === e && s.inspectorId === d) {
         const u = n.getRoutes().find((m) => m.record.__vd_id === s.nodeId);
         u && (s.state = {
-          options: Jn(u)
+          options: Xn(u)
         });
       }
     }), r.sendInspectorTree(d), r.sendInspectorState(d);
   });
 }
-function Yn(e) {
+function Jn(e) {
   return e.optional ? e.repeatable ? "*" : "?" : e.repeatable ? "+" : "";
 }
-function Jn(e) {
+function Xn(e) {
   const { record: t } = e, n = [
     { editable: !1, key: "path", value: t.path }
   ];
@@ -1364,7 +1364,7 @@ function Jn(e) {
       _custom: {
         type: null,
         readOnly: !0,
-        display: e.keys.map((o) => `${o.name}${Yn(o)}`).join(" "),
+        display: e.keys.map((o) => `${o.name}${Jn(o)}`).join(" "),
         tooltip: "Param keys",
         value: e.keys
       }
@@ -1395,13 +1395,13 @@ function Jn(e) {
     }
   }), n;
 }
-const ut = 15485081, ft = 2450411, dt = 8702998, Xn = 2282478, ht = 16486972, Zn = 6710886;
+const ut = 15485081, ft = 2450411, dt = 8702998, Zn = 2282478, ht = 16486972, eo = 6710886;
 function pt(e) {
   const t = [], { record: n } = e;
   n.name != null && t.push({
     label: String(n.name),
     textColor: 0,
-    backgroundColor: Xn
+    backgroundColor: Zn
   }), n.aliasOf && t.push({
     label: "alias",
     textColor: 0,
@@ -1421,18 +1421,18 @@ function pt(e) {
   }), n.redirect && t.push({
     label: typeof n.redirect == "string" ? `redirect: ${n.redirect}` : "redirects",
     textColor: 16777215,
-    backgroundColor: Zn
+    backgroundColor: eo
   });
   let o = n.__vd_id;
-  return o == null && (o = String(eo++), n.__vd_id = o), {
+  return o == null && (o = String(to++), n.__vd_id = o), {
     id: o,
     label: n.path,
     tags: t,
     children: e.children.map(pt)
   };
 }
-let eo = 0;
-const to = /^\/(.*)\/([a-z]*)$/;
+let to = 0;
+const no = /^\/(.*)\/([a-z]*)$/;
 function mt(e, t) {
   const n = t.matched.length && U(t.matched[t.matched.length - 1], e.record);
   e.__vd_exactActive = e.__vd_active = n, n || (e.__vd_active = t.matched.some((o) => U(o, e.record))), e.children.forEach((o) => mt(o, t));
@@ -1441,7 +1441,7 @@ function gt(e) {
   e.__vd_match = !1, e.children.forEach(gt);
 }
 function be(e, t) {
-  const n = String(e.re).match(to);
+  const n = String(e.re).match(no);
   if (e.__vd_match = !1, !n || n.length < 3)
     return !1;
   if (new RegExp(n[1].replace(/\$$/, ""), n[2]).test(t))
@@ -1449,20 +1449,20 @@ function be(e, t) {
   const r = e.record.path.toLowerCase(), l = te(r);
   return !t.startsWith("/") && (l.includes(t) || r.includes(t)) || l.startsWith(t) || r.startsWith(t) || e.record.name && String(e.record.name).includes(t) ? !0 : e.children.some((f) => be(f, t));
 }
-function no(e, t) {
+function oo(e, t) {
   const n = {};
   for (const o in e)
     t.includes(o) || (n[o] = e[o]);
   return n;
 }
-function oo(e) {
-  const t = gn(e.routes, e), n = e.parseQuery || Dn, o = e.stringifyQuery || He, r = e.history;
+function ro(e) {
+  const t = vn(e.routes, e), n = e.parseQuery || jn, o = e.stringifyQuery || He, r = e.history;
   if (process.env.NODE_ENV !== "production" && !r)
     throw new Error('Provide the "history" option when calling "createRouter()": https://next.router.vuejs.org/api/#history.');
-  const l = Q(), f = Q(), d = Q(), c = bt(M);
+  const l = Q(), f = Q(), d = Q(), c = wt(M);
   let h = M;
   j && e.scrollBehavior && "scrollRestoration" in history && (history.scrollRestoration = "manual");
-  const s = de.bind(null, (i) => "" + i), a = de.bind(null, Tn), u = (
+  const s = de.bind(null, (i) => "" + i), a = de.bind(null, Dn), u = (
     // @ts-expect-error: intentionally avoid the type check
     de.bind(null, te)
   );
@@ -1506,8 +1506,8 @@ function oo(e) {
     }
     const v = t.resolve(p, g), P = i.hash || "";
     process.env.NODE_ENV !== "production" && P && !P.startsWith("#") && R(`A \`hash\` should always start with the character "#". Replace "${P}" with "#${P}".`), v.params = s(u(v.params));
-    const $ = Gt(o, S({}, i, {
-      hash: xn(P),
+    const $ = Ht(o, S({}, i, {
+      hash: In(P),
       path: v.path
     })), w = r.createHref($);
     return process.env.NODE_ENV !== "production" && (w.startsWith("//") ? R(`Location "${i}" resolved to "${w}". A resolved location cannot start with multiple slashes.`) : v.matched.length || R(`No match found for location with path "${"path" in i ? i.path : i}"`)), S({
@@ -1521,7 +1521,7 @@ function oo(e) {
         // numbers at `$route.query`, but at the point, the user will have to
         // use their own type anyway.
         // https://github.com/vuejs/router/issues/328#issuecomment-649481567
-        o === He ? jn(i.query) : i.query || {}
+        o === He ? Mn(i.query) : i.query || {}
       )
     }, v, {
       redirectedFrom: void 0,
@@ -1629,7 +1629,7 @@ ${JSON.stringify(v, null, 2)}
       return Oe(O, v, A), A;
     });
   }
-  function vt(i, g) {
+  function yt(i, g) {
     const p = k(i, g);
     return p ? Promise.reject(p) : Promise.resolve();
   }
@@ -1639,13 +1639,13 @@ ${JSON.stringify(v, null, 2)}
   }
   function Ne(i, g) {
     let p;
-    const [v, P, $] = ro(i, g);
+    const [v, P, $] = so(i, g);
     p = pe(v.reverse(), "beforeRouteLeave", i, g);
     for (const _ of v)
       _.leaveGuards.forEach((O) => {
         p.push(L(O, i, g));
       });
-    const w = vt.bind(null, i, g);
+    const w = yt.bind(null, i, g);
     return p.push(w), H(p).then(() => {
       p = [];
       for (const _ of l.list())
@@ -1692,7 +1692,7 @@ ${JSON.stringify(v, null, 2)}
     }, P)) : r.push(i.fullPath, P)), c.value = i, $e(i, g, p, w), ce();
   }
   let z;
-  function yt() {
+  function Et() {
     z || (z = r.listen((i, g, p) => {
       const v = E(i), P = T(v);
       if (P) {
@@ -1701,7 +1701,7 @@ ${JSON.stringify(v, null, 2)}
       }
       h = v;
       const $ = c.value;
-      j && Yt(Te($.fullPath, p.delta), se()), Ne(v, $).catch((w) => D(
+      j && Jt(Te($.fullPath, p.delta), se()), Ne(v, $).catch((w) => D(
         w,
         12
         /* ErrorTypes.NAVIGATION_CANCELLED */
@@ -1745,24 +1745,24 @@ ${JSON.stringify(v, null, 2)}
     const v = Ce.list();
     return v.length ? v.forEach((P) => P(i, g, p)) : (process.env.NODE_ENV !== "production" && R("uncaught error during route navigation:"), console.error(i)), Promise.reject(i);
   }
-  function Et() {
+  function _t() {
     return ne && c.value !== M ? Promise.resolve() : new Promise((i, g) => {
       ie.add([i, g]);
     });
   }
   function ce(i) {
-    return ne || (ne = !i, yt(), ie.list().forEach(([g, p]) => i ? p(i) : g()), ie.reset()), i;
+    return ne || (ne = !i, Et(), ie.list().forEach(([g, p]) => i ? p(i) : g()), ie.reset()), i;
   }
   function $e(i, g, p, v) {
     const { scrollBehavior: P } = e;
     if (!j || !P)
       return Promise.resolve();
-    const $ = !p && Jt(Te(i.fullPath, 0)) || (v || !p) && history.state && history.state.scroll || null;
-    return Rt().then(() => P(i, g, $)).then((w) => w && Ft(w)).catch((w) => ae(w, i, g));
+    const $ = !p && Xt(Te(i.fullPath, 0)) || (v || !p) && history.state && history.state.scroll || null;
+    return Pt().then(() => P(i, g, $)).then((w) => w && Yt(w)).catch((w) => ae(w, i, g));
   }
   const le = (i) => r.go(i);
   let ue;
-  const oe = /* @__PURE__ */ new Set(), _t = {
+  const oe = /* @__PURE__ */ new Set(), bt = {
     currentRoute: c,
     listening: !0,
     addRoute: m,
@@ -1780,10 +1780,10 @@ ${JSON.stringify(v, null, 2)}
     beforeResolve: f.add,
     afterEach: d.add,
     onError: Ce.add,
-    isReady: Et,
+    isReady: _t,
     install(i) {
       const g = this;
-      i.component("RouterLink", Gn), i.component("RouterView", qn), i.config.globalProperties.$router = g, Object.defineProperty(i.config.globalProperties, "$route", {
+      i.component("RouterLink", Hn), i.component("RouterView", zn), i.config.globalProperties.$router = g, Object.defineProperty(i.config.globalProperties, "$route", {
         enumerable: !0,
         get: () => Y(c)
       }), j && // used for the initial navigation client side to avoid pushing
@@ -1797,19 +1797,19 @@ ${JSON.stringify(v, null, 2)}
           get: () => c.value[P],
           enumerable: !0
         });
-      i.provide(Pe, g), i.provide(lt, wt(p)), i.provide(_e, c);
+      i.provide(Pe, g), i.provide(lt, Rt(p)), i.provide(_e, c);
       const v = i.unmount;
       oe.add(i), i.unmount = function() {
         oe.delete(i), oe.size < 1 && (h = M, z && z(), z = null, c.value = M, ue = !1, ne = !1), v();
-      }, process.env.NODE_ENV !== "production" && j && Fn(i, g, t);
+      }, process.env.NODE_ENV !== "production" && j && Yn(i, g, t);
     }
   };
   function H(i) {
     return i.reduce((g, p) => g.then(() => Se(p)), Promise.resolve());
   }
-  return _t;
+  return bt;
 }
-function ro(e, t) {
+function so(e, t) {
   const n = [], o = [], r = [], l = Math.max(t.matched.length, e.matched.length);
   for (let f = 0; f < l; f++) {
     const d = t.matched[f];
@@ -1819,12 +1819,12 @@ function ro(e, t) {
   }
   return [n, o, r];
 }
-const so = [
+const vt = [
   { path: "/", component: () => import("./Home-d27e48f9.mjs"), name: "home" },
   { path: "/about", component: () => import("./About-ec0d9670.mjs"), name: "about" }
-], io = (e = "") => oo({
-  history: tn(),
-  routes: so.map((t) => (t.path = e + t.path, t))
+], io = (e = "") => ro({
+  history: nn(),
+  routes: vt.map((t) => (t.path = e + t.path, t))
 }), mo = () => {
   const e = Ye(0);
   return {
@@ -1840,13 +1840,13 @@ const so = [
   },
   emits: ["update:modelValue"],
   setup(e) {
-    return (t, n) => (Nt(), Ot("div", ao, [
+    return (t, n) => (Ot(), kt("div", ao, [
       Ae("label", {
         class: "input-label",
         for: t.label
       }, [
-        kt(t.$slots, "default", {}, void 0, !0),
-        Ct(" " + $t(t.label), 1)
+        Ct(t.$slots, "default", {}, void 0, !0),
+        $t(" " + At(t.label), 1)
       ], 8, co),
       Ae("input", {
         id: t.label,
@@ -1865,7 +1865,14 @@ const fo = (e, t) => {
   return n;
 }, ho = /* @__PURE__ */ fo(uo, [["__scopeId", "data-v-52b8f1ca"]]), go = {
   install(e, t = { baseUrl: "/app1" }) {
-    e.component("better-input", ho), e.use(io(t.baseUrl));
+    if (e.component("better-input", ho), !e.config.globalProperties.$router)
+      e.use(io(t.baseUrl));
+    else {
+      const n = e.config.globalProperties.$router;
+      vt.forEach((o) => {
+        o.path = t.baseUrl + o.path, n.addRoute(o);
+      });
+    }
   }
 };
 export {

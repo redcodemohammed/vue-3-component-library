@@ -1,7 +1,7 @@
 import { type Plugin } from 'vue'
 
 // plugins
-import { useRouter } from './router'
+import { useRouter, routes } from './router'
 
 // composables
 export * from './composables/useCounter'
@@ -16,6 +16,15 @@ interface App1Options {
 export default {
   install(app, options: App1Options = { baseUrl: '/app1' }) {
     app.component('better-input', BetterInput)
-    app.use(useRouter(options.baseUrl))
+    if (!app.config.globalProperties.$router) {
+      app.use(useRouter(options.baseUrl))
+    } else {
+      const $router = app.config.globalProperties.$router
+      routes.forEach((route) => {
+        route.path = options.baseUrl + route.path
+
+        $router.addRoute(route)
+      })
+    }
   }
 } as Plugin
