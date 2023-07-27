@@ -1,21 +1,13 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import BetterInput from '../src/components/BetterInput.vue'
+import { useCounter } from '../src'
+const text = ref('')
+</script>
 <template>
   <main>
     <h1>Welcome to your your sandbox environment</h1>
 
-    <BetterInput
-      label="firstname"
-      :input-attributes="{
-        placeholder: 'Enter your firstname...',
-        type: 'text',
-        autocomplete: 'given-name'
-      }">
-      First-name
-    </BetterInput>
+    <BetterInput v-model="text" label="firstname">First-name</BetterInput>
   </main>
 </template>
-
-<script setup lang="ts">
-import BetterInput from '../src/components/BetterInput.vue'
-</script>
-
-<style lang="scss" scoped></style>
