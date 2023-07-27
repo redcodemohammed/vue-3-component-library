@@ -1,3 +1,4 @@
-import { Plugin } from 'vue';
 export * from './composables/useCounter';
-export declare const componentsPlugin: Plugin;
+import { type Plugin } from 'vue';
+declare const _default: Plugin;
+export default _default;
